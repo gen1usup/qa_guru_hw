@@ -11,7 +11,7 @@ def set_user_info():
     user_info.append(person.email())
     user_info.append(str(person.age()))
     user_info.append(str(person.weight(1000, 10000)))
-    user_info.append(person.occupation())
+    user_info.append("department")
     return user_info
 
 
@@ -23,11 +23,13 @@ def test_table_add(open_browser):
     for i in range(6):
         registration_form_fields[i].type(user_info[i])
     browser.element('#submit').click()
-    new_element = browser.all("//*[@class='rt-tbody']/div[4]/div/div")
-    new_line_elements = []
-    for i in range(6):
-        new_line_elements.append(new_element[i]().text)
-    assert set(new_line_elements) == set(user_info)
+    # new_element = browser.all("//*[@class='rt-tbody']/div[4]/div/div")
+    browser.element("//*[@class='rt-tbody']/div[4]/div").should(have.text(
+        f'{user_info[0]}\n{user_info[1]}\n{user_info[3]}\n{user_info[2]}\n{user_info[4]}\n{user_info[5]}'))
+    # new_line_elements = []
+    # for i in range(6):
+    #     new_line_elements.append(new_element[i]().text)
+    # assert set(new_line_elements) == set(user_info)
 
 def test_table_delete(open_browser):
     browser.open('/webtables')
@@ -44,9 +46,12 @@ def test_change(open_browser):
     for i in range(6):
         registration_form_fields[i].clear().type(user_info[i])
     browser.element('#submit').click()
-    new_element = browser.elements("//*[@class='rt-tbody']/div[2]/div/div")
-    new_line_elements = []
-    for i in range(6):
-        new_line_elements.append(new_element[i]().text)
-    assert set(new_line_elements) == set(user_info)
+    # new_element = browser.elements("//*[@class='rt-tbody']/div[2]/div/div")
+    # print(browser.element("//*[@class='rt-tbody']/div[2]/div")().text)
+    browser.element("//*[@class='rt-tbody']/div[2]/div").should(have.text(
+        f'{user_info[0]}\n{user_info[1]}\n{user_info[3]}\n{user_info[2]}\n{user_info[4]}\n{user_info[5]}'))
+    # new_line_elements = []
+    # for i in range(6):
+    #     new_line_elements.append(new_element[i]().text)
+    # assert set(new_line_elements) == set(user_info)
 
