@@ -1,2 +1,4 @@
-selene>=2.0.0b10
-pytest
+selene>=2.0.0b12
+pytest~=7.1.3
+elizabeth~=0.0.2
+mimesis~=6.0.0
