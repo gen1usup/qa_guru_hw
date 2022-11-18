@@ -1,7 +1,9 @@
-import datetime
+import sys
 
 from selene import command, have, be
 from selene.support.shared import browser
+from selenium.webdriver import Keys
+
 
 def open_page():
     browser.open('/automation-practice-form')
@@ -53,11 +55,11 @@ def set_birth_date_by_click(day, month, year):
 
 
 def set_birth_date_by_type(day, month, year):
-    date = datetime.datetime.strptime(f'{day} {month} {year}', '%d %B %Y')
-    browser.element('[id="userNumber"]').press_tab()
-    browser.element('#dateOfBirthInput').double_click().double_click().set_value(date.strftime('%d %b %Y')).press_enter()
 
-
+    if sys.platform == 'win32':
+        browser.element('#dateOfBirthInput').send_keys(Keys.CONTROL, 'a').type(f'{day} {month} {year}').press_enter()
+    elif sys.platform == 'darwin':
+        browser.element('#dateOfBirthInput').send_keys(Keys.COMMAND, 'a').type(f'{day} {month} {year}').press_enter()
 def set_address(address):
     browser.element('#currentAddress').type(address)
 
