@@ -48,7 +48,7 @@ def test_with_lambda(full_size):
 @allure.tag("web")
 @allure.severity(Severity.CRITICAL)
 @allure.label("owner", "dlebedev")
-@allure.feature("Allure HW_1")
+@allure.feature("Allure HW")
 @allure.story("Тест с декоратором")
 @allure.link("https://github.com", name="Testing")
 def test_with_decorator(full_size):

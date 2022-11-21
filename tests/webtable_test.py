@@ -1,3 +1,4 @@
+import allure
 from selene import have
 from selene.support.shared import browser
 from mimesis import Person
@@ -14,7 +15,9 @@ def set_user_info():
     user_info.append("department")
     return user_info
 
-
+@allure.label("owner", "dlebedev")
+@allure.feature("webtables")
+@allure.story("Проверка добавления существующей записи")
 def test_table_add(open_browser):
     browser.open('/webtables')
     browser.element('#addNewRecordButton').click()
@@ -31,13 +34,18 @@ def test_table_add(open_browser):
     #     new_line_elements.append(new_element[i]().text)
     # assert set(new_line_elements) == set(user_info)
 
+@allure.label("owner", "dlebedev")
+@allure.feature("webtables")
+@allure.story("Проверка удаления существующей записи")
 def test_table_delete(open_browser):
     browser.open('/webtables')
     begin_count = len(browser.elements('.action-buttons'))
     browser.element('#delete-record-3').click()
     browser.elements('.action-buttons').should(have.size(begin_count - 1))
 
-
+@allure.label("owner", "dlebedev")
+@allure.feature("webtables")
+@allure.story("Проверка изменения существующей записи")
 def test_change(open_browser):
     browser.open('/webtables')
     user_info = set_user_info()
