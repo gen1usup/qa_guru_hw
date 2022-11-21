@@ -8,7 +8,7 @@ from tests.testdata.users import random_user
 @allure.label("owner", "dlebedev")
 @allure.feature("automation-practice-form")
 @allure.story("e2e тест заполнения")
-def test_form(open_browser):
+def test_form(selenoid_without_video):
     user_info = random_user
 
     open_page()
