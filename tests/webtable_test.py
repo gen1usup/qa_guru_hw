@@ -46,8 +46,6 @@ def test_change(open_browser):
     for i in range(6):
         registration_form_fields[i].clear().type(user_info[i])
     browser.element('#submit').click()
-    # new_element = browser.elements("//*[@class='rt-tbody']/div[2]/div/div")
-    # print(browser.element("//*[@class='rt-tbody']/div[2]/div")().text)
     browser.element("//*[@class='rt-tbody']/div[2]/div").should(have.text(
         f'{user_info[0]}\n{user_info[1]}\n{user_info[3]}\n{user_info[2]}\n{user_info[4]}\n{user_info[5]}'))
     # new_line_elements = []
