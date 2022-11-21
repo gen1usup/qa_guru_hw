@@ -4,6 +4,9 @@ from selene import by, be
 from selene.support.shared import browser
 from allure_commons.types import Severity
 
+from tests.conftest import selenoid_without_video
+
+
 @pytest.fixture(scope='module')
 def full_size():
     browser.config.window_width = 1920
@@ -30,7 +33,8 @@ def test_clear_selene(full_size):
 @allure.feature("Allure HW")
 @allure.story("Тест с with allure step")
 @allure.link("https://github.com", name="Testing")
-def test_with_lambda(full_size):
+@pytest.mark.usefixtures(full_size, selenoid_without_video)
+def test_with_lambda():
     with allure.step("Открытие главной страницы"):
         browser.open("https://github.com")
     with allure.step("Поиск репозитория"):
