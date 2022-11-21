@@ -7,10 +7,12 @@ from allure_commons.types import Severity
 from tests.conftest import selenoid_without_video
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='function')
 def full_size():
     browser.config.window_width = 1920
     browser.config.window_height = 1080
+    yield browser
+    browser.quit()
 
 @allure.tag("web")
 @allure.severity(Severity.CRITICAL)
@@ -18,7 +20,8 @@ def full_size():
 @allure.feature("Allure HW")
 @allure.story("Просто тест")
 @allure.link("https://github.com", name="Testing")
-def test_clear_selene(full_size):
+@pytest.mark.usefixtures("full_size", 'selenoid_without_video')
+def test_clear_selene():
     browser.open("https://github.com")
     browser.element(".header-search-input").click()
     browser.element(".header-search-input").send_keys("eroshenkoam/allure-example")
@@ -33,7 +36,7 @@ def test_clear_selene(full_size):
 @allure.feature("Allure HW")
 @allure.story("Тест с with allure step")
 @allure.link("https://github.com", name="Testing")
-@pytest.mark.usefixtures(full_size, selenoid_without_video)
+@pytest.mark.usefixtures("full_size", 'selenoid_without_video')
 def test_with_lambda():
     with allure.step("Открытие главной страницы"):
         browser.open("https://github.com")
@@ -55,7 +58,8 @@ def test_with_lambda():
 @allure.feature("Allure HW")
 @allure.story("Тест с декоратором")
 @allure.link("https://github.com", name="Testing")
-def test_with_decorator(full_size):
+@pytest.mark.usefixtures("full_size", 'selenoid_without_video')
+def test_with_decorator():
     open_main_page()
     search_for_repository("eroshenkoam/allure-example")
     go_to_repository("eroshenkoam/allure-example")

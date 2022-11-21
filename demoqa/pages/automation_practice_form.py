@@ -71,7 +71,8 @@ def set_address(address):
 
 @allure.step('Подтверждение заполнения')
 def submit_form():
-    browser.element('[id="submit"]').click()
+    # browser.element('[id="submit"]').click()
+    browser.element('#submit').perform(command.js.click)
 
 @allure.step('Проверка заполнения')
 def check_fill_form(user_info):
