@@ -5,6 +5,7 @@ from selene.support.shared import browser
 from demoqa.pages.automation_practice_form import set_fullname, set_email, set_phone, \
     select_gender, set_subjects, select_hobbies, upload_picture, check_fill_form, submit_form, set_address, \
     set_birth_date_by_type, open_page
+from demoqa.utils import attach
 from tests.testdata.users import random_user
 
 def given_opened_form():
@@ -35,6 +36,8 @@ def test_form(selenoid_without_video):
     select_hobbies(user_info.hobbies)
     upload_picture(user_info.name_jpg)
     set_address(user_info.address)
+    attach.add_screenshot(browser)
+
     submit_form()
 
     check_fill_form(user_info)
