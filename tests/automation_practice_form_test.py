@@ -4,7 +4,7 @@ from selene.support.shared import browser
 
 from demoqa.pages.automation_practice_form import set_fullname, set_email, set_phone, \
     select_gender, set_subjects, select_hobbies, upload_picture, check_fill_form, submit_form, set_address, \
-    set_birth_date_by_type, open_page
+    set_birth_date_by_type, open_page, set_birth_date_by_click
 from demoqa.utils import attach
 from tests.testdata.users import random_user
 
@@ -30,8 +30,8 @@ def test_form(selenoid_without_video):
     set_email(user_info.email)
     select_gender(user_info.gender)
     set_phone(user_info.mobile)
-    # set_birth_date_by_click(user_info.birth_day, user_info.birth_month, user_info.birth_year)
-    set_birth_date_by_type(user_info.birth_day, user_info.birth_month, user_info.birth_year)
+    set_birth_date_by_click(user_info.birth_day, user_info.birth_month, user_info.birth_year)
+    # set_birth_date_by_type(user_info.birth_day, user_info.birth_month, user_info.birth_year)
     set_subjects(user_info.subjects)
     select_hobbies(user_info.hobbies)
     upload_picture(user_info.name_jpg)
