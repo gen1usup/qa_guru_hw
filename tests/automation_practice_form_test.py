@@ -1,9 +1,13 @@
-from demoqa.pages.automation_practice_form import  set_fullname, set_email, set_phone, \
+import allure
+
+from demoqa.pages.automation_practice_form import set_fullname, set_email, set_phone, \
     select_gender, set_subjects, select_hobbies, upload_picture, check_fill_form, submit_form, set_address, \
     set_birth_date_by_type, open_page
 from tests.testdata.users import random_user
 
-
+@allure.label("owner", "dlebedev")
+@allure.feature("automation-practice-form")
+@allure.story("e2e тест заполнения")
 def test_form(open_browser):
     user_info = random_user
 
@@ -16,7 +20,7 @@ def test_form(open_browser):
     set_birth_date_by_type(user_info.birth_day, user_info.birth_month, user_info.birth_year)
     set_subjects(user_info.subjects)
     select_hobbies(user_info.hobbies)
-    upload_picture(user_info.jpg)
+    upload_picture(user_info.name_jpg)
     set_address(user_info.address)
     submit_form()
 

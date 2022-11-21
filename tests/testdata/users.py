@@ -5,6 +5,7 @@ from typing import Tuple
 
 from mimesis import Person
 from mimesis.enums import Locale, Gender
+
 person = Person(Locale.RU)
 
 class Subject(Enum):
