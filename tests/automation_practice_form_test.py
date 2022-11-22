@@ -36,8 +36,6 @@ def test_form(selenoid_without_video):
     select_hobbies(user_info.hobbies)
     upload_picture(user_info.name_jpg)
     set_address(user_info.address)
-    attach.add_screenshot(browser)
-
     submit_form()
 
     check_fill_form(user_info)
