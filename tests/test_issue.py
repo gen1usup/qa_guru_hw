@@ -4,7 +4,6 @@ from selene import by, be
 from selene.support.shared import browser
 from allure_commons.types import Severity
 
-from tests.conftest import selenoid_without_video
 
 
 @pytest.fixture(scope='function')
