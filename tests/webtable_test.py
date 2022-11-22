@@ -18,7 +18,7 @@ def set_user_info():
 @allure.label("owner", "dlebedev")
 @allure.feature("webtables")
 @allure.story("Проверка добавления существующей записи")
-def test_table_add(selenoid_without_video):
+def test_table_add(selenoid_with_video):
     browser.open('/webtables')
     browser.element('#addNewRecordButton').click()
     registration_form_fields = browser.elements('.mr-sm-2')
@@ -37,7 +37,7 @@ def test_table_add(selenoid_without_video):
 @allure.label("owner", "dlebedev")
 @allure.feature("webtables")
 @allure.story("Проверка удаления существующей записи")
-def test_table_delete(selenoid_without_video):
+def test_table_delete(selenoid_with_video):
     browser.open('/webtables')
     begin_count = len(browser.elements('.action-buttons'))
     browser.element('#delete-record-3').click()
@@ -46,7 +46,7 @@ def test_table_delete(selenoid_without_video):
 @allure.label("owner", "dlebedev")
 @allure.feature("webtables")
 @allure.story("Проверка изменения существующей записи")
-def test_change(selenoid_without_video):
+def test_change(selenoid_with_video):
     browser.open('/webtables')
     user_info = set_user_info()
     browser.element('#edit-record-2').click()

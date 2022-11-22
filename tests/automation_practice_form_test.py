@@ -21,7 +21,7 @@ def given_opened_form():
 @allure.label("owner", "dlebedev")
 @allure.feature("automation-practice-form")
 @allure.story("e2e тест заполнения")
-def test_form(selenoid_without_video):
+def test_form(selenoid_with_video):
     user_info = random_user
 
     open_page()

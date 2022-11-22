@@ -20,7 +20,7 @@ def full_size():
 @allure.feature("Allure HW")
 @allure.story("Просто тест")
 @allure.link("https://github.com", name="Testing")
-@pytest.mark.usefixtures("full_size", 'selenoid_without_video')
+@pytest.mark.usefixtures("full_size", 'selenoid_with_video')
 def test_clear_selene():
     browser.open("https://github.com")
     browser.element(".header-search-input").click()
@@ -36,7 +36,7 @@ def test_clear_selene():
 @allure.feature("Allure HW")
 @allure.story("Тест с with allure step")
 @allure.link("https://github.com", name="Testing")
-@pytest.mark.usefixtures("full_size", 'selenoid_without_video')
+@pytest.mark.usefixtures("full_size", 'selenoid_with_video')
 def test_with_lambda():
     with allure.step("Открытие главной страницы"):
         browser.open("https://github.com")
@@ -58,7 +58,7 @@ def test_with_lambda():
 @allure.feature("Allure HW")
 @allure.story("Тест с декоратором")
 @allure.link("https://github.com", name="Testing")
-@pytest.mark.usefixtures("full_size", 'selenoid_without_video')
+@pytest.mark.usefixtures("full_size", 'selenoid_with_video')
 def test_with_decorator():
     open_main_page()
     search_for_repository("eroshenkoam/allure-example")
